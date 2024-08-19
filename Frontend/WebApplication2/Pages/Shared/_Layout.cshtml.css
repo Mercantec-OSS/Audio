@@ -1,0 +1,77 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+a {
+  color: #0077cc;
+}
+header.sticky-header {
+    background-color: #303434 !important;
+    position:sticky;
+}
+´.btn{
+    color:white;
+}
+
+
+.HomeBut {
+    color: white;
+}
+.BrowseBut {
+    color: white;
+}
+.uploadBut {
+    color: white;
+}
+    .uploadBut.active {
+        background-color: #ff5733; /* Change this to your desired color */
+        color: #ffffff; /* Optional: Change text color */
+    }
+.SignUpBut {
+    color: white;
+}
+.LoginBut {
+    color: white;
+}
+.LoginBut.active {
+    background-color: #ff5733; /* Change this to your desired color */
+    color: #ffffff; /* Optional: Change text color */
+}
+ 
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+.mailfoot{
+    margin-bottom: 10px;
+}
+
+

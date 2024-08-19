@@ -1,0 +1,228 @@
+﻿@page
+@using AudioMercantec.Pages;
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Audio Visualizer</title>
+
+
+</head>
+<body>
+    <!-- File input element to allow users to select multiple audio files -->
+    <input type="file" id="fileInput" accept="audio/*" multiple>
+    <div class="container">
+        <div class="Lists1">
+            <div class="Waveforms">Waveform</div>
+        </div>
+        <div class="Lists2">
+            @* <div class="Titles">Title</div>
+            <div class="descriptions">Description</div>
+            <div class="Genres">Genre</div>
+            <div class="Categorys">Category</div>
+            <div class="Downloads">Download</div>
+            <div class="CopyRights">CopyRight</div> *@
+            <table>
+                <tr class="">
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Genre</th>
+                    <th>Category</th>
+                    <th>Download</th>
+                    <th>CopyRight</th>
+                </tr>
+                <tr>
+                    <div class="waveform" id="waveform"></div>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="visualizers" class="audio-container"></div>
+
+    <div id="container"></div>
+</body>
+</html>
+<style>
+    .container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .Lists1 {
+        background-color: red;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        width: 300px;
+        margin-left: -100px;
+        color: white;
+    }
+
+    .Lists2 {
+        background-color: green;
+        height: 50px;
+        display: grid;
+        grid-template-columns: repeat(6, auto);
+        align-items: center;
+        width: 1400px;
+        margin-left: 100px;
+        margin-right: -100px;
+    }
+    /**/
+    .Waveforms {
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+    }
+
+    .title, .description, .tags, .category, .download-button, .logo {
+        margin: 0 5px;
+        color: red;
+    }
+
+    .navbar-nav .nav-item .nav-link {
+        color: white; /* White text color */
+    }
+
+
+
+    .sticky-header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000; /* Ensure it's above other content */
+    }
+
+    .audioLogo {
+        height: 60px;
+        width: 250px;
+        margin-right: 40px;
+    }
+
+    body {
+        background-color: #181919;
+        padding-top: 70px;
+    }
+
+    .audio {
+        color: white;
+    }
+
+    .audio-controls {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .audio-container {
+        margin-top: 20px;
+        position: relative;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap; 
+
+
+
+        grid-template-columns: auto auto auto auto auto auto;
+    }
+
+
+
+    .download-button {
+        padding: 4px 8px; 
+        background-image: linear-gradient(#1B1B1B, #373737);
+        color: White;
+        border-style: solid;
+        border-color: #635050;
+        border-width: 1px;
+        border-radius: 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px; 
+        margin-top: 20px; 
+        margin-bottom: 20px;
+        max-height: 40px;
+        min-height: 40pX;
+        margin-left: 10px;
+    }
+
+        .download-button:hover {
+            background-image: linear-gradient(#1c1b1b,#302f2f);
+            color: #E1D9D1;
+        }
+
+    .description {
+        flex: 1;
+        padding: 8px 16px;
+        color: white;
+        text-align: start;
+        text-decoration: none;
+        font-size: 16px;
+        border-radius: 4px;
+        max-width: 300px;
+        margin-right: 10px;
+        max-height: 120px;
+        white-space: pre-wrap; 
+        word-wrap: break-word; 
+    }
+
+    .tags {
+        color: white;
+        font-size: 16px;
+        text-align: start;
+        text-decoration: none;
+        max-width: 100px;
+    }
+
+    .category {
+        color: white;
+        font-size: 16px;
+        text-align: start;
+        text-decoration: none;
+        max-width: 100px;
+    }
+
+    .logo {
+        display: inline-block; /* Ensure elements are inline */
+        position: relative; /* Position elements relatively for z-index */
+        z-index: 0; /* Set a lower z-index than waveform */
+        height: 80px;
+        width: 80px;
+        margin-left: 10px;
+    }
+
+    .waveform {
+        flex: 1; /* Allow waveform to grow to fill remaining space */
+        position: relative; /* Position waveform relatively for z-index */
+        z-index: 1; /* Put waveform in front */
+
+        margin-left: -100px;
+    }
+
+    .title {
+        top: 0;
+        color: white;
+    }
+
+    .edit-button {
+        top: 0;
+        color: red;
+    }
+
+    .hr {
+        bottom: 20px;
+        background-color: white;
+    }
+
+    .peak-amplitude {
+        color: white;
+    }
+</style>

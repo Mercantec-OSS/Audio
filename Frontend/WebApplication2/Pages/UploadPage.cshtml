@@ -1,0 +1,301 @@
+﻿@page 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Heading for the upload section -->
+        <h1 class="upload">Upload</h1>
+
+        <!-- Form for uploading audio files and providing related information -->
+        <form id="myForm">
+            <!-- File input element to allow users to select multiple audio files -->
+            <input class="audio form-control" type="file" id="fileInput" multiple accept="audio/*" value="Custom text">
+
+            <!-- Title input field -->
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required><br><br>
+
+            <!-- Tags input field -->
+            <label for="tags">Tags:</label>
+            <input type="text" id="tags" name="tags"><br><br>
+
+            <!-- Description text area with a character limit of 254 -->
+            <label for="description">Description:</label>
+            <textarea maxlength="254" id="description" name="description" class="w-100" required></textarea><br><br>
+
+            <!-- Section for Creative Commons license checkbox -->
+            <div class="row cc-box">
+                <!-- Checkbox for agreeing to the license -->
+                <div class="col-1 text-center">
+                    <div class="checkbox-wrapper-24">
+                        <input type="checkbox" id="check-24" name="check" value="">
+                        <label for="check-24">
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Description of the Creative Commons license -->
+                <p class="cc col-11">
+                    The Attribution-NonCommercial 4.0 International license, abbreviated as CC BY-NC 4.0,
+                    is a type of Creative Commons license that allows others to share and adapt your work for non-commercial purposes,
+                    as long as they give you credit (attribution). This license does not permit commercial use of the work without prior permission from the copyright holder.
+                </p>
+            </div>
+
+            <!-- Submit button for the form -->
+            <input class="submit" type="submit" value="Submit">
+        </form>
+
+        <!-- Row with a button to navigate back to the Index page -->
+        <div class="row">
+            <div class="col-4"></div>
+            <a class="col-4" href="Index"><button class="tilbage">Back</button></a>
+            <div class="col-4"></div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+<style>
+   body {
+        background-color: #18181A;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+
+.upload {
+    font-size: 3em;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+   
+}
+.audio::file-selector-button{
+  background-color: white;
+    
+}
+.audio{
+     background-color: rgba(255, 255, 255, 0.1);
+     color: white;
+     border: none;
+     margin-bottom: 20px;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+
+
+
+
+
+.cc {
+    margin-top: 10px;
+}
+
+.submit,
+.tilbage {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #91a486;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 20px;
+}
+.tilbage{
+     background-color: #42070f;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+}
+
+.submit:hover
+{
+    background-color: #31b886;
+}
+.tilbage:hover{
+    background-color: #780615;
+}
+
+.checkbox-wrapper-24 {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.checkbox-wrapper-24 input[type="checkbox"] {
+    display: none;
+}
+
+.checkbox-wrapper-24 label {
+    cursor: pointer;
+}
+
+.checkbox-wrapper-24 label span {
+    display: inline-block;
+    position: relative;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+}
+
+.checkbox-wrapper-24 label span:before,
+.checkbox-wrapper-24 label span:after {
+    content: '';
+    position: absolute;
+    background-color: #fff;
+}
+
+.checkbox-wrapper-24 label span:before {
+    width: 5px;
+    height: 2px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.checkbox-wrapper-24 label span:after {
+    width: 10px;
+    height: 2px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.checkbox-wrapper-24 input[type="checkbox"]:checked + label span:before {
+    width: 10px;
+}
+
+.checkbox-wrapper-24 input[type="checkbox"]:checked + label span:after {
+    width: 18px;
+}
+    .checkbox-wrapper-24 .checkbox {
+    display: table-cell;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .checkbox-wrapper-24 label {
+    display: inline-block;
+    color: black;
+    cursor: pointer;
+    position: relative;
+  }
+  .checkbox-wrapper-24 label span {
+    display: inline-block;
+    position: relative;
+    background-color: transparent;
+    width: 25px;
+    height: 25px;
+    transform-origin: center;
+    border: 2px solid white;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 10px;
+    transition: background-color 150ms 200ms, transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
+  }
+  .checkbox-wrapper-24 label span:before {
+    content: "";
+    width: 0px;
+    height: 2px;
+    border-radius: 2px;
+    background: white;
+    position: absolute;
+    transform: rotate(45deg);
+    top: 13px;
+    left: 9px;
+    transition: width 50ms ease 50ms;
+    transform-origin: 0% 0%;
+  }
+  .checkbox-wrapper-24 label span:after {
+    content: "";
+    width: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: white;
+    position: absolute;
+    transform: rotate(305deg);
+    top: 16px;
+    left: 10px;
+    transition: width 50ms ease;
+    transform-origin: 0% 0%;
+  }
+  .checkbox-wrapper-24 label:hover span:before {
+    width: 5px;
+    transition: width 100ms ease;
+  }
+  .checkbox-wrapper-24 label:hover span:after {
+    width: 10px;
+    transition: width 150ms ease 100ms;
+  }
+
+  .checkbox-wrapper-24 input[type=checkbox] {
+    display: none;
+  }
+  .checkbox-wrapper-24 input[type=checkbox]:checked + label span {
+    background-color: black;
+    transform: scale(1.25);
+  }
+  .checkbox-wrapper-24 input[type=checkbox]:checked + label span:after {
+    width: 10px;
+    background: #fff;
+    transition: width 150ms ease 100ms;
+  }
+  .checkbox-wrapper-24 input[type=checkbox]:checked + label span:before {
+    width: 5px;
+    background: #fff;
+    transition: width 150ms ease 100ms;
+  }
+  .checkbox-wrapper-24 input[type=checkbox]:checked + label:hover span {
+    background-color: black;
+    transform: scale(1.25);
+  }
+  .checkbox-wrapper-24 input[type=checkbox]:checked + label:hover span:after {
+    width: 10px;
+    background: #fff;
+    transition: width 150ms ease 100ms;
+  }
+  .checkbox-wrapper-24 input[type=checkbox]:checked + label:hover span:before {
+    width: 5px;
+    background: #fff;
+    transition: width 150ms ease 100ms;
+  }
+   
+
+</style>

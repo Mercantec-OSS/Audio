@@ -1,0 +1,31 @@
+﻿.gradient-background {
+    background: radial-gradient(circle, #5c0067 0%, #00d4ff 100%);
+    background-size: 180% 180%;
+    animation: gradient-animation 18s ease infinite;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.card.card-cover.h-100.overflow-hidden.text-bg-dark.rounded-4.shadow-lg {
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .card.card-cover.h-100.overflow-hidden.text-bg-dark.rounded-4.shadow-lg:hover {
+        transform: scale(1.05);
+        background-color: #444;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        border-color: #666;
+        cursor: pointer;
+    }

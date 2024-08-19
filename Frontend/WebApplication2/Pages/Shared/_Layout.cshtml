@@ -1,0 +1,127 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Audio</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AudioMercantec.styles.css" asp-append-version="true" />
+    
+</head>
+<body>
+    <!-- Header section with a sticky header style and dark background color -->
+    <header class="sticky-header" style="background-color: #2b3035;">
+
+        <!-- Navigation bar with Bootstrap classes for responsive behavior -->
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom">
+
+            <!-- Brand link, currently empty -->
+            <a class="navbar-brand text-white" asp-area="" asp-page="/Index"></a>
+
+            <!-- Button for toggling the navigation menu on small screens -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+           
+            <div class="navbar-collapse collapse d-sm-inline-flex">
+                <ul class="navbar-nav flex-grow-1">
+
+                    <!-- Navigation item for Home -->
+                    <li class="nav-item">
+                        <a href="Home">
+                            <button class="HomeBut btn">Home</button>
+                        </a>
+                    </li>
+
+                    <!-- Navigation item for Browse -->
+                    <li class="nav-item">
+                        <a href="/Index">
+                            <button class="BrowseBut btn">Browse</button>
+                        </a>
+                    </li>
+
+                    <!-- Navigation item for Upload -->
+                    <li class="nav-item">
+                        <a href="UploadPage">
+                            <button class="uploadBut btn">Upload</button>
+                        </a>
+                    </li>
+
+                    <!-- Navigation item for Sign up -->
+                    <li class="nav-item">
+                        <a href="SignUp">
+                            <button class="SignUpBut btn">Sign up</button>
+                        </a>
+                    </li>
+
+                    <!-- Navigation item for Login -->
+                    <li class="nav-item">
+                        <a href="LoginPage">
+                            <button class="uploadBut btn">Login</button>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </nav>
+    </header>
+
+    <!-- Main content container -->
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody() <!-- Placeholder for the body content rendered by the Razor view engine -->
+        </main>
+    </div>
+
+    <!-- Footer section with a top border and muted text color -->
+    <footer class="border-top footer text-muted">
+
+        <section id="footer">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Footer section with navigation links -->
+                    <div class="col-6 col-md-2">
+                        <h5>Section</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Footer section with a newsletter subscription form -->
+                    <div class="mailfoot col-md-5 offset-md-1">
+                        <form>
+                            <h5>Subscribe to our newsletter</h5>
+                            <p>Monthly digest of what's new and exciting from us.</p>
+                            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                                <label for="newsletter1" class="visually-hidden">Email address</label>
+                                <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+                                <button class="btn btn-primary" type="button">Subscribe</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </footer>
+
+    
+   
+    
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/Waveform.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
