@@ -20,7 +20,7 @@ namespace Models
 
         public int SampleRate { get; set; }
 
-        public int BitDepth { get; set; }
+        public double BitDepth { get; set; }
 
         public string FileSize { get; set; }
 

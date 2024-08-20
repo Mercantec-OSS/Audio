@@ -10,7 +10,7 @@ namespace Models
     {
         public double bitdepth { get; set; }
 
-        public int channel { get; set; }
+        public int channels { get; set; }
 
         public double duration { get; set; }
 

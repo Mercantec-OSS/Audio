@@ -54,14 +54,19 @@ namespace BusinessLogic
                         audio.Duration = audioData.duration;
                     }
 
-                    if (audioData.duration != 0 && audio.Duration == 0)
+                    if (audioData.bitdepth != 0 && audio.BitDepth == 0)
                     {
-                        audio.Duration = audioData.duration;
+                        audio.BitDepth = audioData.bitdepth;
                     }
 
                     if (audioData.filesize != 0 && audio.FileSize == "")
                     {
                         audio.FileSize = audioData.filesize.ToString();
+                    }
+
+                    if (audioData.channels != 0 && audio.Type.Channels == "")
+                    {
+                        audio.Type.Channels = audioData.channels.ToString();
                     }
 
                     return audio;
