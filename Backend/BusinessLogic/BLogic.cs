@@ -36,9 +36,11 @@ namespace BusinessLogic
         /// </summary>
         /// <param name="audio">(audio) custom object</param>
         /// <returns>(bool)</returns>
-        public async Task<bool> AddNewAudio(Audio audio) { 
-            
-            return await dbAccess.AddNewAudio(audio); }
+        public async Task<bool> AddNewAudio(Audio audio) {
+            AudioMetaDataLink audioMetaDataLink = new AudioMetaDataLink();
+            audio = await audioMetaDataLink.AudioExtract(audio);
+            return await dbAccess.AddNewAudio(audio); 
+        }
 
         /// <summary>
         /// Henter alle lyde der passer med alle kategorierne som er blevet modtaget
