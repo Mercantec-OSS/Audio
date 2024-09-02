@@ -1,4 +1,5 @@
 ﻿@page 
+@model AudioMercantec.Pages.UploadPage
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,21 +15,21 @@
         <h1 class="upload">Upload</h1>
 
         <!-- Form for uploading audio files and providing related information -->
-        <form id="myForm">
+        <form method="post" enctype="multipart/form-data" id="myForm">
             <!-- File input element to allow users to select multiple audio files -->
-            <input class="audio form-control" type="file" id="fileInput" multiple accept="audio/*" value="Custom text">
+            <input class="audio form-control" type="file" id="fileInput" multiple accept="audio/*" value="Custom text" name="Files">
 
             <!-- Title input field -->
             <label for="title">Title:</label>
-            <input type="text" id="title" name="title" required><br><br>
+            <input type="text" id="title" name="Title" required><br><br>
 
             <!-- Tags input field -->
             <label for="tags">Tags:</label>
-            <input type="text" id="tags" name="tags"><br><br>
+            <input type="text" id="tags" name="Tags"><br><br>
 
             <!-- Description text area with a character limit of 254 -->
             <label for="description">Description:</label>
-            <textarea maxlength="254" id="description" name="description" class="w-100" required></textarea><br><br>
+            <textarea maxlength="254" id="description" name="Description" class="w-100" required></textarea><br><br>
 
             <!-- Section for Creative Commons license checkbox -->
             <div class="row cc-box">
@@ -50,7 +51,7 @@
             </div>
 
             <!-- Submit button for the form -->
-            <input class="submit" type="submit" value="Submit">
+            <button type="submit" class="submit">Submit</button>
         </form>
 
         <!-- Row with a button to navigate back to the Index page -->
@@ -63,7 +64,6 @@
 </body>
 
 </html>
-
 
 <style>
    body {
