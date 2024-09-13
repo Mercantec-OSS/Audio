@@ -45,6 +45,17 @@ namespace AudioOSSSwagger.Controllers
             return BadRequest(new { error = "Recieved no categorys" });
         }
 
+        [HttpPut("{AudioID}")]
+        public async Task<ActionResult<IEnumerable<Audio>>> UpdateAudio([FromBody] Audio audio, int AudioID)
+        {
+            bool works = await bLogic.EditAudio(audio, AudioID);
+            if (works)
+            {
+                return Ok();
+            }
+            return BadRequest(new { error = "AudioID did not match" });
+        }
+
         /// <summary>
         /// Giver alt data der matcher alle de genre som vi har sendt
         /// </summary>
@@ -66,7 +77,7 @@ namespace AudioOSSSwagger.Controllers
         /// </summary>
         /// <param name="AudioName">(string) navn på filen</param>
         /// <returns>.json fil med dataen</returns>
-        [HttpGet("Name/{AudioID}")]
+        [HttpGet("Name/{AudioName}")]
         public async Task<IActionResult> GetOneAudioName(string AudioName = "")
         {
             var nameReturn = await bLogic.GetOneAudioName(AudioName);
@@ -151,6 +162,31 @@ namespace AudioOSSSwagger.Controllers
 
             var mimeType = "audio/mpeg";
             return PhysicalFile(filePath, mimeType, Path.Combine(fileowner, filename));
+        }
+
+        /// <summary>
+        /// Her gør jeg det muligt at slette mine filer
+        /// </summary>
+        /// <param name="fileplacement">placering af filen</param>
+        /// <returns>Success/NotFound</returns>
+        [HttpDelete("delete/{fileplacement}")]
+        public IActionResult DeleteFile(string fileplacement)
+        {
+            var filePath = Path.Combine(_uploadPath, fileplacement);
+
+            if (!System.IO.File.Exists(filePath))
+            {
+                return NotFound(new { error = "File not found" });
+            }
+
+            System.IO.File.Delete(filePath);
+
+            if (!System.IO.File.Exists(filePath))
+            {
+                return Ok();
+            }
+
+            return NotFound(new { error = "File not deleted but found" });
         }
     }
 }

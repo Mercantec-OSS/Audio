@@ -2,6 +2,7 @@
 using DBAccess;
 using Models;
 using System.Net.Http.Headers;
+using System.IO;
 
 string backupuser = "test";
 string? user;
@@ -36,6 +37,11 @@ Console.Clear();
 
 Console.WriteLine("Testing Download");
 await DownloadFile(response);
+Console.ReadLine();
+Console.Clear();
+
+Console.WriteLine("Deleting all possible uploaded files");
+await DeleteUploadedFiles(user);
 Console.ReadLine();
 
 static async Task<string> UploadFile(string userName, string filePath)
@@ -115,5 +121,18 @@ static async Task DownloadFile(string placement)
     catch (Exception ex)
     {
         Console.WriteLine("Exception: " + ex.Message);
+    }
+}
+
+static async Task DeleteUploadedFiles(string owner)
+{
+    var deleteUrl = $"http://localhost:5274/api/Audio/delete/";
+    using var httpClient = new HttpClient();
+
+    for (int i = 1; i < 31;  i++)
+    {
+        var response = await httpClient.DeleteAsync(deleteUrl + $"{owner}%5C%5Cyell{i}.mp3");
+        var responseContent = await response.Content.ReadAsStringAsync();
+        Console.WriteLine(i + "Response: " + responseContent);
     }
 }

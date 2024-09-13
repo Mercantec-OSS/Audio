@@ -42,6 +42,8 @@ namespace BusinessLogic
             return await dbAccess.AddNewAudio(audio); 
         }
 
+        public async Task<bool> EditAudio(Audio audio, int id) { return await dbAccess.EditAudio(audio, id); }
+
         /// <summary>
         /// Henter alle lyde der passer med alle kategorierne som er blevet modtaget
         /// </summary>

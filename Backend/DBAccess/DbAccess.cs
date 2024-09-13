@@ -20,7 +20,7 @@ namespace DBAccess
         public async Task<Audio> GetOneAudioName(string name)
         {
             using var dbContext = new DBContext();
-            var audio = await dbContext.Audio.Include(a => a.Category).Include(a => a.Genre).Include(a => a.Type).Include(a => a.Loudness).Include(a => a.Instrument).Include(a => a.Mood).Include(a => a.Other).FirstOrDefaultAsync(x => x.Name == name);
+            var audio = await dbContext.Audio.Include(a => a.Category).Include(a => a.Genre).Include(a => a.Type).Include(a => a.Loudness).Include(a => a.Instrument).Include(a => a.Mood).Include(a => a.Other).Include(a => a.UsedIn).Include(a => a.MadeOf).FirstOrDefaultAsync(x => x.Name == name);
             if (audio != null)
             {
                 return audio;
@@ -31,7 +31,7 @@ namespace DBAccess
         public async Task<Audio> GetOneAudioID(int id)
         {
             using var dbContext = new DBContext();
-            var audio = await dbContext.Audio.Include(a => a.Category).Include(a => a.Genre).Include(a => a.Type).Include(a => a.Loudness).Include(a => a.Instrument).Include(a => a.Mood).Include(a => a.Other).FirstOrDefaultAsync(x => x.ID == id);
+            var audio = await dbContext.Audio.Include(a => a.Category).Include(a => a.Genre).Include(a => a.Type).Include(a => a.Loudness).Include(a => a.Instrument).Include(a => a.Mood).Include(a => a.Other).Include(a => a.UsedIn).Include(a => a.MadeOf).FirstOrDefaultAsync(x => x.ID == id);
             if (audio != null)
             {
                 return audio;
@@ -46,6 +46,27 @@ namespace DBAccess
             try
             {
                 dbContext.Add(audio);
+                await dbContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        }
+
+        public async Task<bool> EditAudio(Audio audio, int id)
+        {
+            using var dbContext = new DBContext();
+            Audio audioOriginal = await dbContext.Audio.FirstOrDefaultAsync(x => x.ID == id);
+            if (audio == null)
+            {
+                return false;
+            }
+            try
+            {
+                audioOriginal = audio;
                 await dbContext.SaveChangesAsync();
                 return true;
             }

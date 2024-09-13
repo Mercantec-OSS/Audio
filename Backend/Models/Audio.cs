@@ -47,5 +47,9 @@ namespace Models
         public Mood Mood { get; set; }
 
         public Other Other { get; set; }
+
+        public List<MadeOf> MadeOf { get; set; }
+
+        public List<UsedIn> UsedIn { get; set; }
     }
 }

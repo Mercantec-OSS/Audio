@@ -29,6 +29,10 @@ namespace AudioMercantec.Pages
         [BindProperty]
         public bool AcceptsLicense { get; set; }
 
+        /// <summary>
+        /// This first posts the audiofile and then posts the info on the audiofile
+        /// </summary>
+        /// <returns>redirect</returns>
         public async Task<IActionResult> OnPostAsync()
         {
             // Step 1: Upload the files
@@ -43,7 +47,7 @@ namespace AudioMercantec.Pages
             // Step 2: Submit the form data
             var isSuccess = await SubmitFormDataAsync(fileLocations);
 
-            if (!isSuccess.Contains("Error"))
+            if (isSuccess)
             {
                 // Redirect to success page or display success message
                 return RedirectToPage("/Success");
@@ -53,6 +57,12 @@ namespace AudioMercantec.Pages
             return Page();
         }
 
+        /// <summary>
+        /// Post the files to the backend
+        /// </summary>
+        /// <param name="files">the file that is being uploaded</param>
+        /// <param name="userName">the person that uploads the file</param>
+        /// <returns>(string) the fileplacement at the backend</returns>
         private async Task<List<string>> UploadFilesAsync(IFormFileCollection files, string userName)
         {
             var fileLocations = new List<string>();
@@ -79,18 +89,28 @@ namespace AudioMercantec.Pages
             return fileLocations;
         }
 
-        private async Task<string> SubmitFormDataAsync(List<string> fileLocations)
+        /// <summary>
+        /// Posts all the info about the audio file
+        /// </summary>
+        /// <param name="fileLocations">where the files are placed at the backend</param>
+        /// <returns>(bool) if everything worked</returns>
+        private async Task<bool> SubmitFormDataAsync(List<string> fileLocations)
         {
             using var client = new HttpClient();
 
+            // The original formdata that gets the info from the user
+            //var formData = new
+            //{
+            //    Title,
+            //    Tags,
+            //    Description,
+            //    AcceptsLicense,
+            //    FileLocations = fileLocations
+            //};
+
+            // Some random info made by chatgpt that just fills the json
             var formData = new Audio
             {
-                ////Title,
-                ////Tags,
-                ////Description,
-                ////AcceptsLicense,
-                ////FileLocations = fileLocations
-
                 Name = "Sample Track",
                 Hidden = false,
                 Description = "This is a sample description.",
@@ -137,21 +157,22 @@ namespace AudioMercantec.Pages
                     Copyright = "© 2024 Sample Company",
                     IsrcCode = "US-S1Z-99-00001",
                     UpceanCode = 123456789012
+                },
+                UsedIn = new List<UsedIn>
+                {
+                    new UsedIn { AudioID = 2 }
+                },
+                MadeOf = new List<MadeOf> 
+                { 
+                    new MadeOf {  AudioID = 2 } 
                 }
             };
 
+            // Converts the formdata into .json format and the sends it to the api
             var jsonContent = new StringContent(JsonSerializer.Serialize(formData), Encoding.UTF8, "application/json");
             var response = await client.PostAsync("http://localhost:5274/api/Audio", jsonContent);
 
-            if (!response.IsSuccessStatusCode)
-            {
-                // Log the response details for debugging
-                var responseContent = await response.Content.ReadAsStringAsync();
-                Console.WriteLine("Response Status: " + response.StatusCode);
-                Console.WriteLine("Response Content: " + responseContent);
-            }
-
-            return await response.Content.ReadAsStringAsync();
+            return response.IsSuccessStatusCode;
         }
     }
 }
