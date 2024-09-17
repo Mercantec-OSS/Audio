@@ -119,7 +119,10 @@ namespace AudioOSSSwagger.Controllers
         {
             if (audioFile == null || audioFile.Length == 0 || Path.GetExtension(audioFile.FileName).ToLower() != ".mp3")
             {
-                return BadRequest(new { error = "Invalid file format" });
+                if (Path.GetExtension(audioFile.FileName).ToLower() != ".wav")
+                {
+                    return BadRequest(new { error = "Invalid file format" });
+                }
             }
 
             username = username.ToLower();
